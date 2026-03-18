@@ -1,0 +1,48 @@
+{
+  "name": "noaber/laravel-sportlink-clubdataservice",
+  "description": "Wrapper for the KNVB Club.Data API.",
+  "keywords": [
+    "KNVB",
+    "sportlink",
+    "laravel",
+    "api"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Noaber",
+      "email": "info@postmans.nl"
+    }
+  ],
+  "require": {
+    "php": "^8.2",
+    "laravel/framework": "^11.0 | ^12.0 || ^13.0"
+  },
+  "require-dev": {
+
+  },
+  "autoload": {
+    "psr-4": {
+      "Noaber\\Sportlink\\ClubData\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Noaber\\Sportlink\\ClubData\\": "tests/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Noaber\\Sportlink\\ClubData\\SportLinkClubDataServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true,
+  "config": {
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
+  }
+}
