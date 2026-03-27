@@ -10,6 +10,13 @@ class SportLinkRankingService
         $this->sportLinkService = $sportLinkService;
     }
 
+    public function getPeriods(int $poolCode): array
+    {
+        return $this->sportLinkService->get('poulestand', [
+            'poulecode' => $poolCode,
+        ]);
+    }
+
     public function getGroupStandings(string|int $groupCode, array $args = []): array
     {
         $defaults = [
