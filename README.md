@@ -27,12 +27,6 @@ Laravel should automatically discover the service provider.
 
 Set your Club.Data client ID in your environment file:
 
-Laravel should automatically discover the service provider.
-
-## Configuration
-
-Set your Club.Data client ID in your environment file:
-
 Default configuration values:
 
 - Base URI: `https://data.sportlink.com/`

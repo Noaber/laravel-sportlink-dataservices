@@ -10,7 +10,8 @@ class SportLinkService
     private string $baseUri;
     private string $apiKey;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->baseUri = config('sportlink-club-data.base_uri');
         $this->apiKey = config('sportlink-club-data.client_id');
     }
@@ -18,13 +19,17 @@ class SportLinkService
     public function get(string $endpoint, array $query = []): array
     {
         try {
-            $response = Http::acceptJson()->get(
-                $this->baseUri . '/' . ltrim($endpoint, '/'),
-                $query + ['client_id' => $this->apiKey]
-            );
+            $response = Http::acceptJson()
+                ->timeout(config('sportlink-club-data.http_timeout'))
+                ->retry(config('sportlink-club-data.http_retry'), 200, function ($exception) {
+                    return $exception instanceof \Illuminate\Http\Client\ConnectionException;
+                })
+                ->get($this->baseUri . '/' . ltrim($endpoint, '/'),
+                    $query + ['client_id' => $this->apiKey]
+                );
 
             return $response->throw()->json();
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             throw new RuntimeException($e->getMessage(), $e->getCode());
         }
     }
